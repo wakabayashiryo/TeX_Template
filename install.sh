@@ -1,5 +1,7 @@
 #! /bin/sh
 
+sudo apt-get install nkf
+
 sudo apt-get -y install texlive 											# 本体 
 
 sudo apt-get -y install texlive-lang-cjk # 日本語版 (UTF8 対応) 

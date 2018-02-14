@@ -5,14 +5,14 @@
 # Author: Ryo Wakabayashi
 #
 
-PLATEX="uplatex"
+UPLATEX="uplatex"
 RM="rm -f -r"
 DVI2PDF="dvipdfmx" 
 
 INFODIR="./Info"
 DOCDIR="./Doc"
  
-CHARCODE="nkf -g *.tex"  
+CHARCODE='nkf -g *.tex'   
 case $CHARCODE in # nkf が返す文字コードにあわせる
     UTF-8) KANJI="-kanji=utf8";;
     EUC-JP) KANJI="-kanji=euc";;
@@ -20,18 +20,19 @@ case $CHARCODE in # nkf が返す文字コードにあわせる
     ISO-2022-JP) KANJI="-kanji=jis";;
 esac
 
+
 mkdir -p $DOCDIR
 mkdir -p $INFODIR
 
 cd $INFODIR
-${PLATEX} $KANJI ../*.tex
+$UPLATEX $KANJI ../*.tex
 cd ../
 
 ${DVI2PDF} -o $DOCDIR/output.pdf $INFODIR/*.dvi 
 
-evince $DOCDIR/*.pdf &
+evince $DOCDIR/*.pdf&
 
 
-# $(RM) $(INFODIR) $(DOCDIR)
+# $RM $INFODIR $DOCDIR
 
 

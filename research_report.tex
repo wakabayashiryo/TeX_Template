@@ -1,0 +1,101 @@
+﻿%
+\documentclass[fleqn]{ujreport}%<--- class はjreport
+\usepackage{sotsuron}         %<----- 修論、卒論用のスタイルファイル
+\usepackage{ascmac}
+\usepackage[dvipdfmx]{graphicx}
+%\usepackage{graphicx,psfrag}
+\usepackage{epsf}
+%\usepackage{fracdull}
+\renewcommand{\labelenumi}{[\theenumi]}
+
+%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ YNU report paper size $$$$$$$$$$$$$$$$$$$$$$
+\topmargin -15mm %ORG 
+\oddsidemargin -0.1in %ORG 
+\evensidemargin -0.1in %ORG 
+\baselineskip 7.833mm %ORG 
+\textheight 25.2cm %ORG
+%\textheight 23.0cm
+\textwidth 17cm %ORG
+%$$$$$$$$$$$$$$$$$$$$$$必ず次の4つは必要$$$$$$$$$$$$$$$$$$$$$$
+\renewcommand{\bf}{\bfseries}
+\renewcommand{\gt}{\gtfamily}
+\renewcommand{\sf}{\sffamily}
+\newcommand{\bm}[1]{\mbox{\boldmath $#1$}}
+\usepackage{amsmath}
+%\renewcommand{\normalsize}{\fontsize{10pt}{12pt}\selectfont}
+%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+\newcommand{\epsf}[1]{\includegraphics{#1}}
+%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+%\def\epsfile#1{\vspace*{3cm}EPFfigure}
+%
+%\includeonly{equip}
+%$$$$$$$$$$$$$$$$$$$$$$$$$$   表 紙   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+%表紙の注意：課題研究報告書には英文は不要
+%
+\thesis{
+  \bf 卒業研究報告書 \\
+  \large Graduation Research Report
+  }
+\title{\bf
+  \TeX を用いた卒業研究報告書の書き方 \\
+  \normalsize How to Write of Graduation Research Report using \TeX 
+  \smallskip
+  \large\bf
+  }
+\professor{
+  浅野 洋介\\
+  \normalsize Advisory Professor \ Yosuke ASANO 
+  }
+\date{
+  平成17年3月1日提出 \\
+  \normalsize March 1, 2005
+  }
+\author{
+  木更津工業高等専門学校 電気電子工学科 \\     
+  \normalsize Department of Electrical and Electric Engineering, 
+   Kisarazu National College of Technology \\
+   \vspace*{5mm}
+  95-201 \\
+  浅野 洋介\\
+  \normalsize Yosuke ASANO
+  }
+%$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+%%\input{starstyj}
+\begin{document}
+\maketitle
+\maegaki         %ここから要約
+\include{abstract}
+\maetsuke        %ここから目次
+\tableofcontents %目次
+\listoffigures   %図目次
+\listoftables    %表目次
+\hombun          %ここから本文
+\include{introduction}
+\include{theory}
+\include{experiment}
+\include{conclution}
+\shaji          %ここから謝辞
+\include{thanks} 
+\bunken         %ここから参考文献
+\include{reference} 
+\appendix       %ここから付録
+\include{appendix}
+\end{document}  %おわり
+
+以下は自分用のメモ
+abstract.tex               : 要約
+introduction.tex           : 序論
+robotics.tex               : ロボティクス
+conclution.tex             : 結論
+thanks.tex                 : 謝辞
+reference.tex              : 参考文献
+appendix.tex               : 付録
+
+
+
+
+
+
+
+
+
