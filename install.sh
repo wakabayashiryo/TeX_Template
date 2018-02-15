@@ -2,11 +2,11 @@
 
 sudo apt-get install nkf
 
-sudo apt-get -y install texlive 											# 本体 
+sudo apt-get -y install texlive-full latex-cjk-japanese
 
-sudo apt-get -y install texlive-lang-cjk # 日本語版 (UTF8 対応) 
+# sudo apt-get -y install texlive-lang-cjk # 日本語版 (UTF8 対応) 
 
-sudo apt-get -y install texlive-fonts-recommended texlive-fonts-extra 
+# sudo apt-get -y install texlive-fonts-recommended texlive-fonts-extra 
 
 
 sudo apt-get -y install xdvik-ja 										# プレビューを見るのに必要 
