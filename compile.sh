@@ -26,7 +26,7 @@ else
     esac
 
     cd $SRCDIR
-    $PLATEX -output-directory="../$INFODIR" $KANJI $(basename $1)
+    $PLATEX -synctex=1 -output-directory="../$INFODIR" $KANJI $(basename $1)
     cd ../
 
     $DVI2PDF -o $DOCDIR/output.pdf $INFODIR/*.dvi  
