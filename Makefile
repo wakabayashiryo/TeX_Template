@@ -10,22 +10,26 @@ DVI2PDF	:= dvipdfmx
 VIEWER  := evince
 RM	:= rm -r -f
 
-INFODIR	:= Info
-DOCDIR	:= Doc
-SRCDIR	:= Src
+INFODIR	:= ./Info
+DOCDIR	:= ./Doc
+SRCDIR	:= ./Src
 
+FILE  	:= hoge
 DVIS    := $(wildcard $(INFODIR)/*.dvi)
 CHARCODE:= $(shell nkf -g $(FILE))
 
 TEXFLAG := -synctex=1 -output-directory=../$(INFODIR)
 
-.PHONY: all clean install uninstall
+.PHONY: all clean install uninstall 
 
 all: checkTeX $(INFODIR)/% $(DOCDIR)/%.pdf viewpdf
 
 checkTeX:
-	-@mkdir -p $(INFODIR)
-	-@mkdir -p $(DOCDIR)
+# Check file path argument
+#	if[! -e $(FILE)];then
+#		echo 'input regal filename';
+#		$(error Input make FILE=<filename>)
+#	fi
 
 # get character code from tex document
 #"case" of shell command is not supported
@@ -43,17 +47,18 @@ ifeq ($(CHARCODE),ISO-2022-JP)
 TEXFLAG += -kanji=jis
 endif
 
+$(INFODIR)/%:
+	-@mkdir -p $(INFODIR)
+	-@mkdir -p $(DOCDIR)
 
-$(INFODIR)/%: 
-	cd $(SRCDIR)
-	$(PLATEX) $(TEXFLAG) $(FILE)
-	cd ../
+	-@cd $(SRCDIR);\
+	$(PLATEX) $(TEXFLAG) $(notdir $(FILE))
 
 $(DOCDIR)/%.pdf: $(DVIS)
 	$(DVI2PDF) -o $@ $^
 
 viewpdf:
-	$(VIEWER) $(DOCDIR)/%.pdf&
+	@$(VIEWER) $(DOCDIR)/$(notdir $(FILE)).pdf&
 
 clean:
 	$(RM) $(INFODIR) $(DOCDIR)
