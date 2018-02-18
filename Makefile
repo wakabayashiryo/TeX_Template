@@ -4,54 +4,63 @@
 #  Created in: 2018/2/15
 #  Author: Wakabayashi Ryo
 
-PLATEX	:=	platex
-DVI2PDF	:=	dvipdfmx
-RM		:=	rm -r -f
+# PLATEX	:=	platex
+# DVI2PDF	:=	dvipdfmx
+# VIEWER  :=  evince
+# RM		:=	rm -r -f
 
-INFODIR	:=	./Info
-DOCDIR	:=	./Doc
-SRCDIR	:=	./Src
+# INFODIR	:=	./Info
+# DOCDIR	:=	./Doc
+# SRCDIR	:=	./Src
 
-.PHONY: all clean install uninstall  
+# DVIS    :=  $(wildcard $(INFODIR)/*.dvi)
 
-all: compile $(DOCDIR)/%.pdf viewpdf 
+# .PHONY: all clean install uninstall  
+#$(DOCDIR)/%.pdf viewpdf 
 
-compile:
-    -@mkdir -p $(INFODIR)
-    -@mkdir -p $(DOCDIR)
+all:
+    echo test
+    # -@mkdir -p $(INFODIR)
+    # -@mkdir -p $(DOCDIR)
 
-    CHARCODE:=nkf -g $1   
-    case $(CHARCODE) in # nkf が返す文字コードにあわせる
-        UTF-8) 			KANJI := -kanji=utf8;;
-        EUC-JP) 		KANJI := -kanji=euc;;
-        Shift-JIS) 		KANJI := kanji=sjis;;
-        ISO-2022-JP) 	KANJI := -kanji=jis;;
-    esac
-
-    test -n "$1" || exit 1 # if theer is no arguments,will exit
+#     CHARCODE := $(nkf -g $1)
+# ifeq ($(CHARCODE),UTF-8)       # get character code from tex document 
+#     KANJI := -kanji=utf8       #"case" of shell command is not supported
+# else 
+#     ifeq ($(CHARCODE),EUC-JP)
+#         KANJI := -kanji=euc
+#     else 
+#         ifeq ($(CHARCODE),Shift-JIS)
+#             KANJI := kanji=sjis
+#         else 
+#             ifeq ($(CHARCODE),ISO-2022-JP)    
+#              	KANJI := -kanji=jis
+# endif  
     
-    cd $(SRCDIR)
-    $(PLATEX) -synctex=1 -output-directory="../$(INFODIR)" $(KANJI $(basename $1))
-    cd ../
+    # $(shell echo "test1")
 
-dvipdf: $(DOCDIR)/%.pdf
+    # $(shell cd $(SRCDIR))
+    # $(shell $(PLATEX) -synctex=1 -output-directory="../$(INFODIR)" $(KANJI $(basename $1)))
+    # $(shell cd ../)
 
-# $(DOCDIR)/%.pdf: $(INFODIR)/%.dvi
+# $(DOCDIR)/%.pdf: $(DVIS)
 #     $(DVI2PDF) -o $@ $^
       
-# viewpdf: 
-#     evince $(DOCDIR)/%.pdf&
+# viewpdf:
+#     $(VIEWER) $(DOCDIR)/%.pdf&
 
-clean:
-	$(RM) $(INFODIR) $(DOCDIR)
 
-install:
-	sudo apt-get install nkf
 
-	sudo apt-get -y install texlive-full latex-cjk-japanese
+# clean:
+# 	$(RM) $(INFODIR) $(DOCDIR)
 
-uninstal:
-	sudo apt-get remove nkf
+# install:
+# 	sudo apt-get install nkf
 
-	sudo apt-get remove texlive-full latex-cjk-japanese
+# 	sudo apt-get -y install texlive-full latex-cjk-japanese
+
+# uninstal:
+# 	sudo apt-get remove nkf
+
+# 	sudo apt-get remove texlive-full latex-cjk-japanese
 
