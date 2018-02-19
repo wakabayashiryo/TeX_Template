@@ -5,20 +5,20 @@
         1.nkf   
         2.texlive-full   
         3.latex-cjk-japanese   
-        ***<font color="red">There packages consume free space of about 3GB</font>***   
+        ***<font color="red">Worning:There packages consume free space of about 3GB!!</font>***   
     **command**   
-    > ~/Tex_Template$ **make install**    
+    > ~/TeX_Template$ **make install**    
 - ## Un-installation Method 
     **un-installed packages**   
         1.nkf   
         2.texlive-full   
         3.latex-cjk-japanese   
     **command**
-    > ~/Tex_Template$ **make uninstall**   
+    > ~/TeX_Template$ **make uninstall**   
 ---
 - ## Main Method
     **command**
-    > ~/Tex_Template$ **make [option]**   
+    > ~/TeX_Template$ **make [option]**   
     
     - ### option lists  
         |option|work|   
@@ -32,8 +32,8 @@
 - ## Directores Structure
 
     - ./Doc・・・Generated pdf file
-    - ./Src・・・Tex documents
-    - ./Info・・・Generated information files of tex docments after compiled.   
+    - ./Src・・・TeX documents
+    - ./Info・・・Generated information files of TeX docments after compiled.   
        
        **after compiled*
     ~~~ 
