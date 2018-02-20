@@ -29,14 +29,14 @@
     
 ---
 - ## How to Get Start New Project
-    1. [] Creat New Repository on github   
-    2. [] Clone Template Repository from github   
+    1. [ ] Creat New Repository on github   
+    2. [ ] Clone Template Repository from github   
         > ~/$ **git clone https://github.com/wakabayashiryo/TeX_Template.git**   
-    3. [] Rename Template Folder to New Name   
-    4. [] Move Current Directory into TeX_Template   
-    5. [] Add New Remote Address of New Repository   
+    3. [ ] Rename Template Folder to New Name   
+    4. [ ] Move Current Directory into TeX_Template   
+    5. [ ] Add New Remote Address of New Repository   
         > ~/Hoge_Project$ **git remote add hoge https://github.com/yourid/repository.git**   
-    6. [] Push New Repository   
+    6. [ ] Push New Repository   
         > ~/Hoge_Project$ **git push hoge master**   
 
     **\*Worning** Do not push ***origin*** from Working Project   
