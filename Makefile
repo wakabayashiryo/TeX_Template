@@ -23,12 +23,12 @@ FILE 	?= hoge.tex		#if undefined,hege.txt is substituted
 DVIS    := $(INFODIR)/$(notdir $(basename $(FILE))).dvi
 CHARCODE:= nkf -g $(FILE)	#Get Charactor code
 
-TEXFLAG := -synctex=1 -output-directory=../$(INFODIR)
+TEXFLAG := -synctex=1 -output-directory=../$(INFODIR) --shell-escape
 
 .PHONY: all clean install uninstall commandtest
 
 #*********************************Compile Process***************************************
-all: checkTeX $(INFODIR)/% $(DOCDIR)/$(notdir $(basename $(FILE))).pdf viewpdf
+all: checkTeX $(INFODIR)/%.xbb $(INFODIR)/% $(DOCDIR)/$(notdir $(basename $(FILE))).pdf viewpdf
 
 checkTeX:
 # Check file path argument
@@ -46,11 +46,14 @@ ifeq ($(CHARCODE),EUC-JP)
 TEXFLAG += -kanji=euc
 endif
 ifeq ($(CHARCODE),Shift-JIS)
-TEXFLAG += kanji=sjis
+TEXFLAG += -kanji=sjis
 endif
 ifeq ($(CHARCODE),ISO-2022-JP)
 TEXFLAG += -kanji=jis
 endif
+
+$(INFODIR)/%.xbb:
+	extractbb -x $(SRCDIR)/fig/*
 
 $(INFODIR)/%:
 	-@mkdir -p $(INFODIR)
@@ -58,8 +61,8 @@ $(INFODIR)/%:
 #move Current directory into ./Src
 	-@cd $(SRCDIR);\
 	$(PLATEX) $(TEXFLAG) $(notdir $(FILE))
-
-$(DOCDIR)/$(notdir $(basename $(FILE))).pdf: $(DVIS)
+	
+$(DOCDIR)/$(notdir $(basename $(FILE))).pdf: $(DVIS) 
 	$(DVI2PDF) -o $@ $^
 
 viewpdf:
@@ -70,7 +73,7 @@ viewpdf:
 
 #*********************************Remove Process****************************************
 clean:
-	$(RM) $(INFODIR) $(DOCDIR)
+	$(RM) $(INFODIR) $(DOCDIR) $(SRCDIR)/fig/*.xbb
 #***************************************************************************************
 
 
@@ -79,7 +82,9 @@ clean:
 #There is taget for installing necessary packages
 install:		
 	sudo apt-get install nkf
-
+# sudo apt-get -y install xdvik-ja # プレビューを見るのに必要
+# sudo apt-get -y install dvipsk-ja # DVI から PostScript への変換用
+# sudo apt-get -y install gv #  Ghostscript 、 ps 形式の図を取り込んだ文書の作成用
 	sudo apt-get -y install texlive-full latex-cjk-japanese
 
 #There is taget for uninstalling unnecessary packages
