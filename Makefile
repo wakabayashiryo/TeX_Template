@@ -7,6 +7,8 @@
 
 #command of LiveTex compiler
 PLATEX	:= platex
+#Automatically get bb informations command
+XBB 	:= extractbb
 #conver to pdf from .dvi
 DVI2PDF	:= dvipdfmx
 #pdf viewer
@@ -17,6 +19,7 @@ RM	:= rm -r -f
 INFODIR	:= ./Info
 DOCDIR	:= ./Doc
 SRCDIR	:= ./Src
+FIGDIR 	:= ./fig
 
 FILE 	?= hoge.tex		#if undefined,hege.txt is substituted
 
@@ -53,7 +56,7 @@ TEXFLAG += -kanji=jis
 endif
 
 $(INFODIR)/%.xbb:
-	extractbb -x $(SRCDIR)/fig/*
+	$(XBB) -x $(SRCDIR)/$(FIGDIR)/*
 
 $(INFODIR)/%:
 	-@mkdir -p $(INFODIR)
@@ -73,7 +76,7 @@ viewpdf:
 
 #*********************************Remove Process****************************************
 clean:
-	$(RM) $(INFODIR) $(DOCDIR) $(SRCDIR)/fig/*.xbb
+	$(RM) $(INFODIR) $(DOCDIR) $(SRCDIR)/$(FIGDIR)/*.xbb
 #***************************************************************************************
 
 
