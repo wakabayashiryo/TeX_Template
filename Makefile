@@ -61,7 +61,7 @@ $(INFODIR)/%:
 #move Current directory into ./Src
 	-@cd $(SRCDIR);\
 	$(PLATEX) $(TEXFLAG) $(notdir $(FILE))
-	
+
 $(DOCDIR)/$(notdir $(basename $(FILE))).pdf: $(DVIS) 
 	$(DVI2PDF) -o $@ $^
 
@@ -88,7 +88,7 @@ install:
 	sudo apt-get -y install texlive-full latex-cjk-japanese
 
 #There is taget for uninstalling unnecessary packages
-uninstal:
+uninstall:
 	sudo apt-get remove nkf
 
 	sudo apt-get remove texlive-full latex-cjk-japanese
