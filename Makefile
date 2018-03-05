@@ -17,21 +17,22 @@ VIEWER  := evince
 RM	:= rm -r -f
 
 INFODIR	:= ./Info
-DOCDIR	:= ./Doc
+OUTDIR	:= ./pdf
 SRCDIR	:= ./Src
 FIGDIR 	:= ./fig
 
 FILE 	?= hoge.tex		#if undefined,hege.txt is substituted
 
-DVIS    := $(INFODIR)/$(notdir $(basename $(FILE))).dvi
 CHARCODE:= nkf -g $(FILE)	#Get Charactor code
 
-TEXFLAG := -synctex=1 -output-directory=../$(INFODIR) --shell-escape
+RMFILES := *.aux *.log *.lof *.toc *.dvi *.gz $(FIGDIR)/*.xbb
+
+TEXFLAG := -synctex=1 -output-directory=./ --shell-escape
 
 .PHONY: all clean install uninstall commandtest
 
 #*********************************Compile Process***************************************
-all: checkTeX $(INFODIR)/%.xbb $(INFODIR)/% $(DOCDIR)/$(notdir $(basename $(FILE))).pdf viewpdf
+all: checkTeX %.xbb $(SRCDIR)/% ../$(OUTDIR)/$(notdir $(basename $(FILE))).pdf viewpdf
 
 checkTeX:
 # Check file path argument
@@ -55,28 +56,28 @@ ifeq ($(CHARCODE),ISO-2022-JP)
 TEXFLAG += -kanji=jis
 endif
 
-$(INFODIR)/%.xbb:
+%.xbb:
 	$(XBB) -x $(SRCDIR)/$(FIGDIR)/*
 
-$(INFODIR)/%:
-	-@mkdir -p $(INFODIR)
-	-@mkdir -p $(DOCDIR)
+$(SRCDIR)/%:
+	-@mkdir -p $(OUTDIR)
 #move Current directory into ./Src
 	-@cd $(SRCDIR);\
 	$(PLATEX) $(TEXFLAG) $(notdir $(FILE))
 
-$(DOCDIR)/$(notdir $(basename $(FILE))).pdf: $(DVIS) 
-	$(DVI2PDF) -o $@ $^
+../$(OUTDIR)/$(notdir $(basename $(FILE))).pdf: 
+	cd $(SRCDIR);\
+	$(DVI2PDF) -o $@ *.dvi
 
 viewpdf:
-	@$(VIEWER) $(DOCDIR)/$(notdir $(basename $(FILE))).pdf&
+	@$(VIEWER) $(OUTDIR)/*.pdf&
 #***************************************************************************************
 
 
 
 #*********************************Remove Process****************************************
 clean:
-	$(RM) $(INFODIR) $(DOCDIR) $(SRCDIR)/$(FIGDIR)/*.xbb
+	$(RM) $(addprefix $(SRCDIR)/,$(RMFILES)) $(OUTDIR)/*.pdf
 #***************************************************************************************
 
 
