@@ -23,9 +23,9 @@
     - ### Option Lists  
         |option|work|   
         |:----:|:---:|
-        |FILE=filename|Compile TeX File of Filename Argument|   
-        |clean|Remove ./Info & ./Doc directories|   
-        |viewpdf|Open pdf File in ./Doc |   
+        |FILE=\<filename\>|Compile TeX Files of Filename Argument|   
+        |clean|Remove Information Files & ./pdf directory|   
+        |viewpdf|Open pdf File in ./pdf |   
     
 ---
 - ## How to Get Start New Project
@@ -48,49 +48,52 @@
 ---
 - ## Directores Structure
 
-    - ./Doc・・・Generated pdf File
-    - ./Src・・・TeX Documents
-    - ./Info・・・Generated Information Files of TeX Docments after compiled.   
+    - **./pdf**・・・Generated pdf File
+    - **./Src**・・・TeX Documents
+    - **./Src/fig**・・・Insert figures used on TeX documents.   
+    ***Support Extensions*** \>> .pdf .jpg .png 
        
-       **after compiled*
+       **After compiled*
     ~~~ 
     .
-    ├── Doc
-    │   └── research_report.pdf
-    ├── Info
-    │   ├── abstract.aux
-    │   ├── appendix.aux
-    │   ├── conclution.aux
-    │   ├── experiment.aux
-    │   ├── introduction.aux
-    │   ├── reference.aux
-    │   ├── research_report.aux
-    │   ├── research_report.dvi
-    │   ├── research_report.lof
-    │   ├── research_report.log
-    │   ├── research_report.lot
-    │   ├── research_report.synctex.gz
-    │   ├── research_report.toc
-    │   ├── thanks.aux
-    │   └── theory.aux
     ├── LICENSE
     ├── Makefile
+    ├── pdf
+    │   └── research_report.pdf
+    ├── picture
+    │   └── screen.jpg
     ├── README.md
     └── Src
+        ├── abstract.aux
         ├── abstract.tex
+        ├── appendix.aux
         ├── appendix.tex
+        ├── conclution.aux
         ├── conclution.tex
+        ├── experiment.aux
         ├── fig
         │   ├── drive_circuit.eps
-        │   └── drive_circuit.pdf
+        │   ├── drive_circuit.pdf
+        │   └── drive_circuit.xbb
+        ├── introduction.aux
         ├── introduction.tex
         ├── jynu12.sty
+        ├── reference.aux
         ├── reference.tex
+        ├── research_report.aux
+        ├── research_report.dvi
+        ├── research_report.lof
+        ├── research_report.log
+        ├── research_report.lot
+        ├── research_report.synctex.gz
         ├── research_report.tex
+        ├── research_report.toc
         ├── sotsuron.sty
+        ├── thanks.aux
         ├── thanks.tex
+        ├── theory.aux
         └── theory.tex
-
+        
     ~~~
 ---
 - ## Screen in Operation
