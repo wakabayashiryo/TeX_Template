@@ -14,17 +14,17 @@ DVI2PDF	:= dvipdfmx
 #pdf viewer
 VIEWER  := evince
 #remove command
-RM	:= rm -r -f
+RM		:= rm -r -f
 
-INFODIR	:= ./Info
 OUTDIR	:= ./pdf
 SRCDIR	:= ./Src
 FIGDIR 	:= ./fig
 
-FILE 	?= hoge.tex		#if undefined,hege.txt is substituted
+FILE 	?= hoge.tex		#if undefined,hoge.txt is substituted
 
-CHARCODE:= nkf -g $(FILE)	#Get Charactor code
+CHARCODE := nkf -g $(FILE)	#Get Charactor code
 
+FIGFILE := *.png *.jpg *.pdf 
 RMFILES := *.aux *.log *.lof *.toc *.dvi *.gz $(FIGDIR)/*.xbb
 
 TEXFLAG := -synctex=1 -output-directory=./ --shell-escape
@@ -57,7 +57,7 @@ TEXFLAG += -kanji=jis
 endif
 
 %.xbb:
-	$(XBB) -x $(SRCDIR)/$(FIGDIR)/*
+	$(XBB) -x $(addprefix $(SRCDIR)/$(FIGDIR)/,$(FIGFILE))
 
 $(SRCDIR)/%:
 	-@mkdir -p $(OUTDIR)
@@ -77,7 +77,7 @@ viewpdf:
 
 #*********************************Remove Process****************************************
 clean:
-	$(RM) $(addprefix $(SRCDIR)/,$(RMFILES)) $(OUTDIR)/*.pdf
+	$(RM) $(addprefix $(SRCDIR)/,$(RMFILES)) ./pdf
 #***************************************************************************************
 
 
@@ -86,9 +86,7 @@ clean:
 #There is taget for installing necessary packages
 install:		
 	sudo apt-get install nkf
-# sudo apt-get -y install xdvik-ja # プレビューを見るのに必要
-# sudo apt-get -y install dvipsk-ja # DVI から PostScript への変換用
-# sudo apt-get -y install gv #  Ghostscript 、 ps 形式の図を取り込んだ文書の作成用
+
 	sudo apt-get -y install texlive-full latex-cjk-japanese
 
 #There is taget for uninstalling unnecessary packages
