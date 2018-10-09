@@ -67,7 +67,7 @@ $(SRCDIR)/%:
 
 ../$(OUTDIR)/$(notdir $(basename $(FILE))).pdf: 
 	cd $(SRCDIR);\
-	$(DVI2PDF) -o $@ *.dvi
+	$(DVI2PDF) -p a4-o $@ *.dvi
 
 viewpdf:
 	@$(VIEWER) $(OUTDIR)/*.pdf&
