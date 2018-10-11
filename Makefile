@@ -28,6 +28,7 @@ FIGFILE := *.png *.jpg *.pdf
 RMFILES := *.aux *.log *.lof *.toc *.dvi *.gz $(FIGDIR)/*.xbb
 
 TEXFLAG := -synctex=1 -output-directory=./ --shell-escape
+DVIFLAG :=  -V 7 -p a4
 
 .PHONY: all clean install uninstall commandtest
 
@@ -67,7 +68,7 @@ $(SRCDIR)/%:
 
 ../$(OUTDIR)/$(notdir $(basename $(FILE))).pdf: 
 	cd $(SRCDIR);\
-	$(DVI2PDF) -p a4-o $@ *.dvi
+	$(DVI2PDF) $(DVIFLAG) -o $@ *.dvi
 
 viewpdf:
 	@$(VIEWER) $(OUTDIR)/*.pdf&
