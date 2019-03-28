@@ -94,7 +94,7 @@ install:
 uninstall:
 	sudo apt-get -y purge nkf
 
-	sudo apt-get -y purge texlive-full latex-cjk-japanese
+	sudo apt-get -y purge texlive-full latex-cjk-japanese texlive-*
 #***************************************************************************************
 
 
