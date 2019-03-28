@@ -86,15 +86,15 @@ clean:
 #***********************************Install Uninstal************************************
 #There is taget for installing necessary packages
 install:		
-	sudo apt-get install nkf
+	sudo apt-get -y install nkf
 
 	sudo apt-get -y install texlive-full latex-cjk-japanese
 
 #There is taget for uninstalling unnecessary packages
 uninstall:
-	sudo apt-get remove nkf
+	sudo apt-get -y purge nkf
 
-	sudo apt-get remove texlive-full latex-cjk-japanese
+	sudo apt-get -y purge texlive-full latex-cjk-japanese
 #***************************************************************************************
 
 
